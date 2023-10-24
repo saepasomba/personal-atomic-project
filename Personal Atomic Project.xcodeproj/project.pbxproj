@@ -7,18 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43617A162AE17D0D0021A94F /* CameraAVRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A152AE17D0D0021A94F /* CameraAVRepresentable.swift */; };
+		43617A182AE17D320021A94F /* CameraAVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A172AE17D320021A94F /* CameraAVView.swift */; };
+		43617A202AE3B6D50021A94F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A1F2AE3B6D50021A94F /* RootNavigationView.swift */; };
 		43CA5A512AD5BC0A002E03A1 /* Personal_Atomic_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA5A502AD5BC0A002E03A1 /* Personal_Atomic_ProjectApp.swift */; };
 		43CA5A532AD5BC0A002E03A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA5A522AD5BC0A002E03A1 /* ContentView.swift */; };
 		43CA5A552AD5BC0B002E03A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43CA5A542AD5BC0B002E03A1 /* Assets.xcassets */; };
 		43CA5A582AD5BC0B002E03A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43CA5A572AD5BC0B002E03A1 /* Preview Assets.xcassets */; };
+		43CA5A742ADFB833002E03A1 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA5A732ADFB833002E03A1 /* CameraView.swift */; };
+		43CA5A762ADFB88E002E03A1 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA5A752ADFB88E002E03A1 /* CameraPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43617A152AE17D0D0021A94F /* CameraAVRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAVRepresentable.swift; sourceTree = "<group>"; };
+		43617A172AE17D320021A94F /* CameraAVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAVView.swift; sourceTree = "<group>"; };
+		43617A1F2AE3B6D50021A94F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		43CA5A4D2AD5BC0A002E03A1 /* Personal Atomic Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Atomic Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA5A502AD5BC0A002E03A1 /* Personal_Atomic_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal_Atomic_ProjectApp.swift; sourceTree = "<group>"; };
 		43CA5A522AD5BC0A002E03A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		43CA5A542AD5BC0B002E03A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43CA5A572AD5BC0B002E03A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		43CA5A732ADFB833002E03A1 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		43CA5A752ADFB88E002E03A1 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +42,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43617A142AE17CF00021A94F /* CameraAVFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				43617A152AE17D0D0021A94F /* CameraAVRepresentable.swift */,
+				43617A172AE17D320021A94F /* CameraAVView.swift */,
+			);
+			path = CameraAVFoundation;
+			sourceTree = "<group>";
+		};
+		43617A192AE268E80021A94F /* Camera3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Camera3;
+			sourceTree = "<group>";
+		};
+		43617A1E2AE3B4260021A94F /* NavigationSandbox */ = {
+			isa = PBXGroup;
+			children = (
+				43617A1F2AE3B6D50021A94F /* RootNavigationView.swift */,
+			);
+			path = NavigationSandbox;
+			sourceTree = "<group>";
+		};
 		43CA5A442AD5BC0A002E03A1 = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +87,10 @@
 			children = (
 				43CA5A502AD5BC0A002E03A1 /* Personal_Atomic_ProjectApp.swift */,
 				43CA5A522AD5BC0A002E03A1 /* ContentView.swift */,
+				43617A192AE268E80021A94F /* Camera3 */,
+				43617A142AE17CF00021A94F /* CameraAVFoundation */,
+				43CA5A5E2AD5BC3A002E03A1 /* Camera */,
+				43617A1E2AE3B4260021A94F /* NavigationSandbox */,
 				43CA5A542AD5BC0B002E03A1 /* Assets.xcassets */,
 				43CA5A562AD5BC0B002E03A1 /* Preview Content */,
 			);
@@ -65,6 +103,15 @@
 				43CA5A572AD5BC0B002E03A1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		43CA5A5E2AD5BC3A002E03A1 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				43CA5A732ADFB833002E03A1 /* CameraView.swift */,
+				43CA5A752ADFB88E002E03A1 /* CameraPreview.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +184,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CA5A742ADFB833002E03A1 /* CameraView.swift in Sources */,
+				43CA5A762ADFB88E002E03A1 /* CameraPreview.swift in Sources */,
 				43CA5A532AD5BC0A002E03A1 /* ContentView.swift in Sources */,
 				43CA5A512AD5BC0A002E03A1 /* Personal_Atomic_ProjectApp.swift in Sources */,
+				43617A182AE17D320021A94F /* CameraAVView.swift in Sources */,
+				43617A202AE3B6D50021A94F /* RootNavigationView.swift in Sources */,
+				43617A162AE17D0D0021A94F /* CameraAVRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +322,7 @@
 				DEVELOPMENT_TEAM = G4VYKVQHB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) camera use";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +352,7 @@
 				DEVELOPMENT_TEAM = G4VYKVQHB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) camera use";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
