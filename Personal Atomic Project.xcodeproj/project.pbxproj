@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		435EEB9F2AFB8878003597DB /* Camera4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435EEB9E2AFB8878003597DB /* Camera4.swift */; };
 		43617A162AE17D0D0021A94F /* CameraAVRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A152AE17D0D0021A94F /* CameraAVRepresentable.swift */; };
 		43617A182AE17D320021A94F /* CameraAVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A172AE17D320021A94F /* CameraAVView.swift */; };
 		43617A202AE3B6D50021A94F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A1F2AE3B6D50021A94F /* RootNavigationView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		435EEB9E2AFB8878003597DB /* Camera4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera4.swift; sourceTree = "<group>"; };
 		43617A152AE17D0D0021A94F /* CameraAVRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAVRepresentable.swift; sourceTree = "<group>"; };
 		43617A172AE17D320021A94F /* CameraAVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAVView.swift; sourceTree = "<group>"; };
 		43617A1F2AE3B6D50021A94F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
@@ -42,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		435EEB9D2AFB8865003597DB /* Camera4 */ = {
+			isa = PBXGroup;
+			children = (
+				435EEB9E2AFB8878003597DB /* Camera4.swift */,
+			);
+			path = Camera4;
+			sourceTree = "<group>";
+		};
 		43617A142AE17CF00021A94F /* CameraAVFoundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 				43617A192AE268E80021A94F /* Camera3 */,
 				43617A142AE17CF00021A94F /* CameraAVFoundation */,
 				43CA5A5E2AD5BC3A002E03A1 /* Camera */,
+				435EEB9D2AFB8865003597DB /* Camera4 */,
 				43617A1E2AE3B4260021A94F /* NavigationSandbox */,
 				43CA5A542AD5BC0B002E03A1 /* Assets.xcassets */,
 				43CA5A562AD5BC0B002E03A1 /* Preview Content */,
@@ -189,6 +200,7 @@
 				43CA5A532AD5BC0A002E03A1 /* ContentView.swift in Sources */,
 				43CA5A512AD5BC0A002E03A1 /* Personal_Atomic_ProjectApp.swift in Sources */,
 				43617A182AE17D320021A94F /* CameraAVView.swift in Sources */,
+				435EEB9F2AFB8878003597DB /* Camera4.swift in Sources */,
 				43617A202AE3B6D50021A94F /* RootNavigationView.swift in Sources */,
 				43617A162AE17D0D0021A94F /* CameraAVRepresentable.swift in Sources */,
 			);

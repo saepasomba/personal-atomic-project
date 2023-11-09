@@ -3,23 +3,12 @@ import AVFoundation
 
 struct CameraCaptureView: UIViewControllerRepresentable {
     @Binding var image: UIImage?
-//    @Binding var isTorchOn: Bool
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.sourceType = .camera
         picker.delegate = context.coordinator
         picker.allowsEditing = false
-        
-//        let demoText = UITextView()
-//        demoText.text = "Demo Text!"
-//
-//        picker.cameraOverlayView = demoText
-        
-        // Check if the device has a torch and set its mode
-//        if UIImagePickerController.isFlashAvailable(for: .rear) {
-//            picker.cameraFlashMode = isTorchOn ? .on : .off
-//        }
         
         return picker
     }

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+class viewModel: ObservableObject {
+    @Published var myNum = 0
+}
+
 class Router: ObservableObject {
     @Published var path = NavigationPath([HomeSteps.view2, HomeSteps.view3])
 }
@@ -15,12 +19,34 @@ enum HomeSteps: Hashable {
     case view2
     case view3
     case view4
+    
+    var viewToShow: some View {
+        switch self {
+        case .view2:
+            return AnyView(View2())
+        case .view3:
+            return AnyView(View3())
+        case .view4:
+            return AnyView(View4())
+        }
+    }
 }
 
 enum ProfileSteps: Hashable {
     case profile2
     case profile3
     case profile4
+    
+    var viewToShow: some View {
+        switch self {
+        case .profile2:
+            return AnyView(Profile2())
+        case .profile3:
+            return AnyView(Profile3())
+        case .profile4:
+            return AnyView(Profile4())
+        }
+    }
 }
 
 struct RootNavigationView: View {
@@ -77,53 +103,75 @@ struct RootNavigationView: View {
 struct View2: View {
     
     @EnvironmentObject var path1: Router
+    @StateObject var vm: viewModel = viewModel()
     
     var body: some View {
         VStack {
             Text("Root Home")
             
-            Button {
-                path1.path.append(HomeSteps.view3)
+            NavigationLink {
+                View3()
+                    .environmentObject(vm)
             } label: {
                 Text("Go to View3")
             }
+
+            
+//            Button {
+//                path1.path.append(HomeSteps.view3)
+//            } label: {
+//                Text("Go to View3")
+//            }
         }
         .navigationDestination(for: HomeSteps.self) { currentStep in
-            switch currentStep {
-            case .view2:
-                View2()
-            case .view3:
-                View3()
-            case .view4:
-                View4()
-            }
+            currentStep.viewToShow
+                .environmentObject(vm)
         }
     }
 }
 
 struct View3: View {
     @EnvironmentObject var path1: Router
+    @EnvironmentObject var vm: viewModel
     
     var body: some View {
+        
+        Text("\(vm.myNum)")
+        
         Button {
             path1.path.append(HomeSteps.view4)
         } label: {
             Text("Go to View4")
         }
+        
+        NavigationLink {
+            View4()
+        } label: {
+            Text("View4 pake nav link")
+        }
+
 
     }
 }
 
 struct View4: View {
     @EnvironmentObject var path1: Router
+    @EnvironmentObject var vm: viewModel
     
     var body: some View {
         Text("Final view for home!")
+        Button {
+            vm.myNum += 1
+        } label: {
+            Text("My Num + 1")
+        }
+
         Button {
             path1.path = NavigationPath()
         } label: {
             Text("Back to home!")
         }
+
 
     }
 }
@@ -132,6 +180,7 @@ struct View4: View {
 struct Profile2: View {
     
     @EnvironmentObject var path1: Router
+    @StateObject var vm = viewModel()
     
     var body: some View {
         VStack {
@@ -144,22 +193,18 @@ struct Profile2: View {
             }
         }
         .navigationDestination(for: ProfileSteps.self) { currentStep in
-            switch currentStep {
-            case .profile2:
-                Profile2()
-            case .profile3:
-                Profile3()
-            case .profile4:
-                Profile4()
-            }
+            currentStep.viewToShow
+                .environmentObject(vm)
         }
     }
 }
 
 struct Profile3: View {
     @EnvironmentObject var path1: Router
+    @EnvironmentObject var vm: viewModel
     
     var body: some View {
+        Text("\(vm.myNum)")
         Button {
             path1.path.append(ProfileSteps.profile4)
         } label: {
@@ -171,9 +216,15 @@ struct Profile3: View {
 
 struct Profile4: View {
     @EnvironmentObject var path1: Router
+    @EnvironmentObject var vm: viewModel
     
     var body: some View {
-        Text("Final view for Profile!")
+        Button {
+            vm.myNum += 1
+        } label: {
+            Text("My Num + 1")
+        }
+
         Button {
             path1.path = NavigationPath()
         } label: {
