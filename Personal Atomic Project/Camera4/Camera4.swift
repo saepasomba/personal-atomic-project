@@ -16,8 +16,8 @@ class CaptureModel: NSObject, ObservableObject {
     var frontCamera: AVCaptureDevice?
     var photoOutput: AVCapturePhotoOutput?
     var currentCamera: AVCaptureDevice?
-    @Published
-    var capturedImage: UIImage?
+    @Published var capturedImage: UIImage?
+    @Published var isTakingPicture: Bool = false
 
     override init() {
         super.init()
@@ -69,7 +69,11 @@ class CaptureModel: NSObject, ObservableObject {
         let settings = AVCapturePhotoSettings()
 
         captureSession.startRunning()
-        photoOutput?.capturePhoto(with: settings, delegate: self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: {
+            self.photoOutput?.capturePhoto(with: settings, delegate: self)
+            
+            self.isTakingPicture = false
+        })
     }//startRunningCaptureSession
 
     func stopRunningCaptureSession() {
@@ -87,14 +91,83 @@ extension CaptureModel: AVCapturePhotoCaptureDelegate {
     }
 }
 
+struct Camera4Representable: UIViewRepresentable {
+    @EnvironmentObject var model: CaptureModel
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+        let parent: Camera4Representable
+        
+        init(_ parent: Camera4Representable) {
+            self.parent = parent
+        }
+    }
+    
+    func makeUIView(context: Context) -> some UIView {
+        let view = UIView(frame: UIScreen.main.bounds)
+        let photoOutput = AVCapturePhotoOutput()
+        // Create a capture session
+        let captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .photo
+        
+        // Find and configure the camera
+        guard let camera = model.currentCamera else {
+            fatalError("No camera found")
+        }
+        do {
+            try camera.lockForConfiguration()
+            let input = try AVCaptureDeviceInput(device: camera)
+            
+            // TODO: ADJUST ZOOM FACTOR
+            //            camera.videoZoomFactor = 2
+            if captureSession.canAddInput(input) {
+                captureSession.addInput(input)
+                //
+                //                    photoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "camera_frame_queue"))
+                
+                if captureSession.canAddOutput(photoOutput) {
+                    captureSession.addOutput(photoOutput)
+                    
+                    // Create a preview layer
+                    let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+                    previewLayer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width)
+                    previewLayer.videoGravity = .resizeAspectFill
+                    view.layer.addSublayer(previewLayer)
+                    
+                    // Start the capture session
+                    DispatchQueue.global().async {
+                        captureSession.startRunning()
+                    }
+                }
+            }
+            camera.unlockForConfiguration()
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+        
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        // If needed
+    }
+}
+
 struct Camera4: View {
+    @Environment (\.dismiss) var dismiss
     @StateObject var model = CaptureModel()
+    @Binding var imageOutput: Image?
+    
     @GestureState private var pinchScale: CGFloat = 1.0
     @State var torchMode: Bool = false
     @State private var zoomSum: CGFloat = 1.0
 
     var body: some View {
-        let cameraView = CameraAVRepresentable()
+        let cameraView = Camera4Representable().environmentObject(model)
+//        let cameraView = CameraAVRepresentable()
 
         ZStack {
             Color.black
@@ -125,12 +198,16 @@ struct Camera4: View {
                             Image(uiImage: croppedImage)
                                 .resizable()
                                 .scaledToFit()
+                                .onAppear {
+                                    imageOutput = Image(uiImage: croppedImage)
+                                    dismiss()
+                                }
                         }
                     } else {
 //                        Rectangle()
                         cameraView
                             .scaledToFit()
-                            .background(.red)
+                            .background(.thinMaterial)
                     }
                     Line()
                         .stroke(style: StrokeStyle(lineWidth: 1, dash: [4], dashPhase: 6))
@@ -141,6 +218,11 @@ struct Camera4: View {
                         .fill(Color.white)
                         .frame(maxHeight: 1)
                         .rotationEffect(Angle(degrees: 90))
+                    Circle()
+                        .stroke(lineWidth: 1)
+                        .fill(Color.white)
+                        .scaledToFit()
+                    
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .gesture(MagnificationGesture()
@@ -165,7 +247,7 @@ struct Camera4: View {
                         zoomSum = 3
                     }
                     
-                    if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
+                    if let device = model.currentCamera {
                         do {
                             try device.lockForConfiguration()
 
@@ -180,6 +262,7 @@ struct Camera4: View {
                          
                 Button {
                     if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                        model.isTakingPicture = true
                         model.startRunningCaptureSession()
                     } else {
                         print("No Camera is Available")
@@ -193,21 +276,32 @@ struct Camera4: View {
                             .stroke(lineWidth:4)
                             .fill(.black)
                             .frame(maxWidth: 77)
+                        if model.isTakingPicture {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                        }
                     }
                 }
                 .buttonStyle(.plain)
             }
-        }.animation(.easeInOut(duration: 0.2), value: model.capturedImage)
-        
+        }
+        .animation(.easeInOut(duration: 0.2), value: model.capturedImage)
+//        .if(model.capturedImage != nil) { view in
+//            view
+//                .onChange(of: model.capturedImage!) { newValue in
+//                    imageOutput = Image(uiImage: newValue)
+//                    dismiss()
+//                }
+//        }
     }
     
     func toggleTorch() {
-        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
+        if let device = model.currentCamera {
             if device.hasTorch {
                 do {
                     try device.lockForConfiguration()
                     
-                    device.torchMode = torchMode ? .off : .on
+                    device.torchMode = torchMode ? .on : .off
                     torchMode.toggle()
                     
                     device.unlockForConfiguration()

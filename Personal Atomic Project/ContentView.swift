@@ -11,7 +11,7 @@ import AVFoundation
 struct ContentView: View {
     
     var body: some View {
-        Camera4()
+        Camera4RootView()
     }
 }
 

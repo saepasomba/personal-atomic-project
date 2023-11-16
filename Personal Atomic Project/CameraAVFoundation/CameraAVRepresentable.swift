@@ -20,7 +20,7 @@ struct CameraAVRepresentable: UIViewRepresentable {
     //        }
     //    }
     
-    private let videoOutput = AVCaptureVideoDataOutput()
+//    private let videoOutput = AVCaptureVideoDataOutput()
     let minimumZoom: CGFloat = 1.0
     let maximumZoom: CGFloat = 3.0
     var lastZoomFactor: CGFloat = 1.0

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		435EEB9F2AFB8878003597DB /* Camera4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435EEB9E2AFB8878003597DB /* Camera4.swift */; };
+		435EEBA32B038272003597DB /* Camera4RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435EEBA22B038272003597DB /* Camera4RootView.swift */; };
+		435EEBA72B03CC83003597DB /* ConditionalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435EEBA62B03CC83003597DB /* ConditionalModifier.swift */; };
 		43617A162AE17D0D0021A94F /* CameraAVRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A152AE17D0D0021A94F /* CameraAVRepresentable.swift */; };
 		43617A182AE17D320021A94F /* CameraAVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A172AE17D320021A94F /* CameraAVView.swift */; };
 		43617A202AE3B6D50021A94F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43617A1F2AE3B6D50021A94F /* RootNavigationView.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		435EEB9E2AFB8878003597DB /* Camera4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera4.swift; sourceTree = "<group>"; };
+		435EEBA22B038272003597DB /* Camera4RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera4RootView.swift; sourceTree = "<group>"; };
+		435EEBA62B03CC83003597DB /* ConditionalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalModifier.swift; sourceTree = "<group>"; };
 		43617A152AE17D0D0021A94F /* CameraAVRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAVRepresentable.swift; sourceTree = "<group>"; };
 		43617A172AE17D320021A94F /* CameraAVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAVView.swift; sourceTree = "<group>"; };
 		43617A1F2AE3B6D50021A94F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
@@ -48,6 +52,8 @@
 			isa = PBXGroup;
 			children = (
 				435EEB9E2AFB8878003597DB /* Camera4.swift */,
+				435EEBA62B03CC83003597DB /* ConditionalModifier.swift */,
+				435EEBA22B038272003597DB /* Camera4RootView.swift */,
 			);
 			path = Camera4;
 			sourceTree = "<group>";
@@ -195,6 +201,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				435EEBA32B038272003597DB /* Camera4RootView.swift in Sources */,
+				435EEBA72B03CC83003597DB /* ConditionalModifier.swift in Sources */,
 				43CA5A742ADFB833002E03A1 /* CameraView.swift in Sources */,
 				43CA5A762ADFB88E002E03A1 /* CameraPreview.swift in Sources */,
 				43CA5A532AD5BC0A002E03A1 /* ContentView.swift in Sources */,
